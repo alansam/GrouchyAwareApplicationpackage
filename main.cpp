@@ -21,9 +21,8 @@ enum base {
   BIN =  2, OCT =  8, DEC = 10, HEX = 16,
 };
 
-/// MARK: Template function display
-template<class C_>
-void display(C_ const & samples) {
+/// MARK: Function display
+void display(std::list<std::pair<base, std::string>> const & samples) {
   std::cout << "  function: "s << __func__ << std::endl;
 
   for (auto item : samples) {
@@ -57,8 +56,12 @@ int main(int argc, const char * argv[]) {
   };
 
   // .................................................................
-  std::cout << "template function call"s << std::endl;
-  display<std::list<std::pair<base, std::string>>>(samples);
+  std::cout << "function call"s << std::endl;
+  display(samples);
+
+  std::list<uint64_t> longs(samples.size());
+  std::list<std::string> results(samples.size());
+
 
   // .................................................................
   /// MARK: lambda function to convert and report strings of numbers to numerics
@@ -77,9 +80,6 @@ int main(int argc, const char * argv[]) {
 
     std::cout << oss.str() << std::endl;
   };
-
-  std::list<uint64_t> longs(samples.size());
-  std::list<std::string> results(samples.size());
 
   // .................................................................
   std::cout << "range-based for loop"s << std::endl;
